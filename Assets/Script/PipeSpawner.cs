@@ -5,7 +5,7 @@ public class PipeSpawner : MonoBehaviour
     public GameObject prefab;
     public float spawnRate = .1f;
     public float randomVariable = 1f;
-    public Transform wherewewanttheprefabtostart;
+    public Transform spawnLocation;
     
     private float timer = float.MaxValue;
 
@@ -14,7 +14,7 @@ public class PipeSpawner : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= spawnRate)
         {
-            DoStuff();
+            SpawnRandomOpening();
             timer = 0f;
         }
     }
@@ -23,11 +23,11 @@ public class PipeSpawner : MonoBehaviour
     {
         enabled = true;
     }
-
-    void DoStuff()
+    
+    void SpawnRandomOpening()
     {
         float yOffset = Random.Range(-randomVariable, randomVariable);
-        Vector3 spawnPosition = wherewewanttheprefabtostart.position + Vector3.up * yOffset;
+        Vector3 spawnPosition = spawnLocation.position + Vector3.up * yOffset;
         Instantiate(prefab, spawnPosition, Quaternion.identity);
     }
 }
