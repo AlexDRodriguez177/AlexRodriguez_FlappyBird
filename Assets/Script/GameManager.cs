@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public BounceUI bounceUI;
     private int score = 0;
+    public AudioSource centeralAudio;
+    public AudioClip startClip;
+    public AudioClip scoreClip;
     /// <summary>
     /// Allows the GameManager to be a singleton instance.
     /// Turns off the PipeSpawner component to prevent pipes from spawning at the start.
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
         uiManager.ShowReady();
         bird.ResetBird();
         bird.gameObject.SetActive(true);
+        centeralAudio.PlayOneShot(startClip);
     }
     /// <summary>
     /// Starts the game by resetting the score to 0
@@ -98,6 +102,7 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore()
     {
         score++;
+        centeralAudio.PlayOneShot(scoreClip);
         uiManager.UpdateScore(score);
     }
 }

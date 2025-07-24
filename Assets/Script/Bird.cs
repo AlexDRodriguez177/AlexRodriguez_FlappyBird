@@ -6,14 +6,20 @@ public class Bird : MonoBehaviour
     private Rigidbody2D birdRB;
     private Animator birdAnimator;
     private bool isAlive = false;
+    private bool isButtonHeld = false;
     private Vector3 initialBirdPosition;
     private Quaternion initialBirdRotation;
 
     public float maxJumpVelocity = 5f;
-    public float maxUpwardAngle = 45f;     
-    public float maxDownwardAngle = -90f;  
+    public float maxUpwardAngle = 45f;
+    public float maxDownwardAngle = -90f;
     public float rotationLerpSpeed = 5f;
     public float gravityScale = 3f;
+
+    private AudioSource playerAudioSource;
+    public AudioClip jumpClip;
+    public AudioClip hitClip;
+    public AudioClip dieClip;
     /// <summary>
     /// Gets the initial position and rotation of the bird.
     /// Gets the Animator and Rigidbody2D components of the bird.
@@ -25,12 +31,15 @@ public class Bird : MonoBehaviour
         initialBirdRotation = transform.rotation;
         birdAnimator = GetComponent<Animator>();
         birdRB = GetComponent<Rigidbody2D>();
-        birdRB.gravityScale = 0f; 
+        birdRB.gravityScale = 0f;
+        playerAudioSource = GetComponent<AudioSource>();
     }
     /// <summary>
     /// If the bird is alive, checks for input to jump.
     /// Calls the Jump method when the "Jump" or "Fire1" button is pressed.
     /// Calls the RotateBasedOnVelocity method to adjust the bird's rotation based on its vertical velocity.
+    /// Plays the jump sound clip when the button is pressed for the first time.
+    /// Will not repeat the jump sound if the button is held down.
     /// </summary>
     void Update()
     {
@@ -38,8 +47,18 @@ public class Bird : MonoBehaviour
         {
             if (Input.GetButton("Jump") || Input.GetButton("Fire1"))
             {
+                if (!isButtonHeld)
+                {
+                    playerAudioSource.PlayOneShot(jumpClip);
+                    isButtonHeld = true;
+                }
                 Jump();
             }
+            else
+            {
+                isButtonHeld = false;
+            }
+
             RotateBasedOnVelocity();
         }
     }
@@ -78,7 +97,7 @@ public class Bird : MonoBehaviour
         }
         float targetAngle = 0f;
 
-        if(verticalVelocity > 0)
+        if (verticalVelocity > 0)
         {
             targetAngle = Mathf.Lerp(0, maxUpwardAngle, tilt);
         }
@@ -86,7 +105,7 @@ public class Bird : MonoBehaviour
         {
             targetAngle = Mathf.Lerp(0, maxDownwardAngle, tilt);
         }
-        
+
         float currentZ = transform.eulerAngles.z;
         if (currentZ > 180)
         {
@@ -119,18 +138,22 @@ public class Bird : MonoBehaviour
     /// <summary>
     /// Called when the bird collides with an obstacle or the ground.
     /// Makes the bird not alive, stops its movement, and triggers the game over state.
+    /// Plays the die sound clip.
     /// </summary>
     public void Die()
     {
         isAlive = false;
         birdRB.linearVelocity = Vector2.zero;
         GameManager.Instance.GameOver();
+        playerAudioSource.PlayOneShot(dieClip);
     }
     /// <summary>
     /// When the bird collides with an obstacle or the ground, it calls the Die method.
+    /// Plays the hit sound clip when the collision occurs.
     /// </summary>
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        playerAudioSource.PlayOneShot(hitClip);
         Die();
     }
 }
