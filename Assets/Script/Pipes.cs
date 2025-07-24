@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pipe : MonoBehaviour
+public class Pipes : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public float destroyX = -10f;

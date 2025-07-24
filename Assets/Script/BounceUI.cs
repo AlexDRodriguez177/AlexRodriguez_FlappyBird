@@ -17,18 +17,19 @@ public class BounceUI : MonoBehaviour
         StartCoroutine(BounceUp());
     }
 
-    IEnumerator BounceUp()
+    private IEnumerator BounceUp()
     {
         yield return StartCoroutine(MoveVertical(startAnchoredPos, startAnchoredPos + Vector2.up * bounceHeight, bounceDuration));
         StartCoroutine(BounceDown());
     }
 
-    IEnumerator BounceDown()
+    private IEnumerator BounceDown()
     {
         yield return StartCoroutine(MoveVertical(startAnchoredPos + Vector2.up * bounceHeight, startAnchoredPos, bounceDuration));
+        StartCoroutine(BounceUp());
     }
 
-    IEnumerator MoveVertical(Vector2 from, Vector2 to, float duration)
+    private IEnumerator MoveVertical(Vector2 from, Vector2 to, float duration)
     {
         float elapsed = 0f;
         while (elapsed < duration)
@@ -38,5 +39,10 @@ public class BounceUI : MonoBehaviour
             yield return null;
         }
         rectTransform.anchoredPosition = to;
+    }
+
+    public void RestartBounce()
+    {
+        StartCoroutine(BounceUp());
     }
 }

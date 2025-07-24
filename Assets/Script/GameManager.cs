@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Bird bird;
     public PipeSpawner pipeSpawner;
     public UIManager uiManager;
+    public BounceUI bounceUI;
     private int score = 0;
 
     void Awake()
@@ -24,15 +25,16 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        Pipe[] pipes = FindObjectsByType<Pipe>(FindObjectsSortMode.None);
-        foreach(Pipe pipe in pipes)
+        Pipes[] leftOverObstcles = FindObjectsByType<Pipes>(FindObjectsSortMode.None);
+        foreach(Pipes obstacle in leftOverObstcles)
         {
-            Destroy(pipe.gameObject);
+            Destroy(obstacle.gameObject);
         }
         score = 0;
         uiManager.UpdateScore(score);
 
         uiManager.ShowStart();
+        bounceUI.RestartBounce();
         pipeSpawner.enabled = false;
         bird.ResetBird();
         bird.gameObject.SetActive(false);
