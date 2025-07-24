@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
     /// When thee game is ready to start, this method is called to set up the game state.
     /// Hides the start screen and shows the ready screen.
     /// Resets the bird to its initial state.
-    /// turrns on the bird game object to make it visible.
+    /// Turrns on the bird game object to make it visible.
+    /// Uses the start butto to show the ready screen.
     /// </summary>
     public void ReadyGame()
     {
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
     /// Hides the ready screen.
     /// Tunrs on the PipeSpawner component to start spawning pipes.
     /// Turns on the bird to make it visible.
+    /// When the player clicks the screen the bird starts the game.
     /// </summary>
     public void StartGame()
     {
