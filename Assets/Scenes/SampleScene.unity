@@ -2403,6 +2403,7 @@ MonoBehaviour:
   bird: {fileID: 1126978222}
   pipeSpawner: {fileID: 1689678198}
   uiManager: {fileID: 2077817620}
+  bounceUI: {fileID: 1008728298}
 --- !u!4 &2077817619
 Transform:
   m_ObjectHideFlags: 0

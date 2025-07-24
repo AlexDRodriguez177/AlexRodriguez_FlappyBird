@@ -41,10 +41,7 @@ public class Bird : MonoBehaviour
         }
     }
 
-    private void ResetJumpTrigger()
-    {
-        birdAnimator.ResetTrigger("Jump");
-    }
+
 
     private void Jump()
     {
