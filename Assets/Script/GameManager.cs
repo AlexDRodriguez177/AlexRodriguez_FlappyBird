@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Increases the score by 1 each time this method is called.
     /// Sends the score to be converted and displayed in the UIManager.
+    /// Plays the Score sound when the score is increased.
     /// </summary>
     public void IncreaseScore()
     {
