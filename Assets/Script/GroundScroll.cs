@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GroundScroll : MonoBehaviour
 {
     public float scrollSpeed = 2f;
     public float resetPositionX; 
-    public float initalPositionX; 
+    public float initalPositionX;
 
     void Update()
     {

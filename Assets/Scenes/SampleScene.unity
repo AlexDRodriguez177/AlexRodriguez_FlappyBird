@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 749682264}
   - component: {fileID: 749682267}
   m_Layer: 0
-  m_Name: g
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -833,8 +833,8 @@ Transform:
   m_GameObject: {fileID: 749682263}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.8522, y: -4.4765, z: 0}
+  m_LocalScale: {x: 3.3828537, y: 1.0091072, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -898,8 +898,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 2
-  resetPositionX: -6.13
-  startPositionX: 0
+  resetPositionX: -2
+  initalPositionX: 2
+  repeatWidth: 0
 --- !u!1 &807683797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,15 +1182,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5526677527330610540, guid: 210493843f66aee42981265978864341, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.44, y: 2.56}
+  m_Size: {x: 0.7916667, y: 0.5833333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1048608690
@@ -1201,8 +1202,8 @@ Transform:
   m_GameObject: {fileID: 1048608688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0089, y: 0.0892, z: 0}
+  m_LocalScale: {x: 1.6870282, y: 1.016767, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1222,7 +1223,7 @@ GameObject:
   - component: {fileID: 1126978222}
   - component: {fileID: 1126978223}
   m_Layer: 0
-  m_Name: p
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2044,8 +2045,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1689678197}
+  - component: {fileID: 1689678198}
   m_Layer: 0
-  m_Name: PipeSpawn
+  m_Name: PipeSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2066,6 +2068,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1689678198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689678196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e184998de6fc6de44a8fa51a7cee0034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8895835194987703811, guid: 1ba1edbadf2e9b445a570241889d50da, type: 3}
+  spawnRate: 3
+  randomVariable: 1
+  wherewewanttheprefabtostart: {fileID: 1689678197}
 --- !u!1 &1843114777
 GameObject:
   m_ObjectHideFlags: 0
@@ -2178,7 +2196,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2077817619}
   - component: {fileID: 2077817618}
-  - component: {fileID: 2077817621}
   - component: {fileID: 2077817620}
   m_Layer: 0
   m_Name: GameManager
@@ -2200,7 +2217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bird: {fileID: 1126978222}
-  pipeSpawner: {fileID: 2077817621}
+  pipeSpawner: {fileID: 1689678198}
   uiManager: {fileID: 2077817620}
 --- !u!4 &2077817619
 Transform:
@@ -2234,22 +2251,6 @@ MonoBehaviour:
   screen2: {fileID: 1661459960}
   screen3: {fileID: 1316777439}
   sUI: {fileID: 1303700495}
---- !u!114 &2077817621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2077817617}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e184998de6fc6de44a8fa51a7cee0034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  spawnRate: 0.2
-  randomVariable: 1
-  wherewewanttheprefabtostart: {fileID: 1689678197}
 --- !u!1 &2110664486
 GameObject:
   m_ObjectHideFlags: 0
