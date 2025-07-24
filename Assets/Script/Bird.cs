@@ -15,10 +15,6 @@ public class Bird : MonoBehaviour
     public float maxDownwardAngle = -90f;  
     public float rotationLerpSpeed = 5f;
     public float gravityScale = 3f;
-    
-    private void Awake()
-    {
-    }
 
     void Start()
     {
@@ -40,8 +36,6 @@ public class Bird : MonoBehaviour
             RotateBasedOnVelocity();
         }
     }
-
-
 
     private void Jump()
     {
